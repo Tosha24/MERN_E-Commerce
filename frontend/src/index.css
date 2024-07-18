@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* poppins */
+
+body {
+    background: #ffffffc4;
+    /* color: #fff; */
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+
+    
+  }
+  
+  input,
+  textarea {
+    color: #000;
+  }
+  
+/* Hide the default scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+} 
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background-color: #969393; /* Adjust the color as needed */
+  border-radius: 6px; /* Adjust the radius as needed */
+}
+
+.scrollbar-hide::-webkit-scrollbar-track {
+  background-color: #ffffff; /* Adjust the color as needed */
+} 
+
+
+/* animate-border-in-out */
+
+/* show left right border, then top bottom */
+
+@keyframes borderAnimation {
+  0% {
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+  }
+  50% {
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+  }
+  100% {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+  }
+}
+
+.animate-border-animation:hover::before {
+  animation: borderAnimation 1s ease-in-out;
+}
+
+.animate-border-animation:hover::after {
+  animation: borderAnimation 1s ease-in-out;
+}
