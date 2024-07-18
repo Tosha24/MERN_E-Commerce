@@ -5,7 +5,6 @@ import ProductCardSkeleton from "../../components/Skeleton/ProductCardSkeleton";
 
 const NewProducts = () => {
   const { data: randomProducts, isLoading } = useGetRandomProductsQuery();
-  console.log(randomProducts);
 
   return (
     <div>

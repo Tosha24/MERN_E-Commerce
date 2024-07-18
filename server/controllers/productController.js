@@ -1,10 +1,10 @@
 import asyncHandler from "../middlewares/asyncHandler.js";
 import Product from "../models/productModel.js";
 import Category from "../models/categoryModel.js";
+
 const addProduct = asyncHandler(async (req, res) => {
   try {
     const { name, price, description, category, quantity, brand } = req.fields;
-    console.log(req.fields);
 
     if (!name || !price || !description || !category || !quantity || !brand) {
       return res.status(400).send("Please fill all fields");
@@ -12,7 +12,6 @@ const addProduct = asyncHandler(async (req, res) => {
 
     const product = new Product({ ...req.fields });
     product.populate("category");
-    console.log("Product: ", product);
     await product.save();
     res.status(201).send(product);
   } catch (error) {
@@ -34,7 +33,6 @@ const updateProduct = asyncHandler(async (req, res) => {
       { new: true } // return the updated product
     );
     product.populate("category");
-    console.log("Propduct: ", product);
 
     if (!product) {
       return res.status(404).send("Product not found");
@@ -83,7 +81,6 @@ const fetchProductById = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     product.populate("category");
-    console.log("Product aapdu: ", product);
     if (!product) {
       return res.status(404).send("Product not found");
     }
@@ -181,7 +178,6 @@ const filterProducts = asyncHandler(async (req, res) => {
 
     const filteredProducts = await Product.find(queryConditions);
 
-    console.log(filteredProducts);
     res.json(filteredProducts);
   } catch (error) {
     res.status(404).json({ message: "Server error" });
@@ -201,14 +197,12 @@ const fetchRandomProducts = asyncHandler(async (req, res) => {
 
 const getProductByCategory = asyncHandler(async (req, res) => {
   try {
-    console.log(req);
     const { category } = req.query;
 
     const categoryData = await Category.findOne({ name: category });
 
     const products = await Product.find({ category: categoryData._id });
 
-    console.log(products);
     res.json(products);
   } catch (error) {
     console.error(error);
@@ -235,7 +229,6 @@ const getBrandsUsingCategory = asyncHandler(async (req, res) => {
         res.status(404).json({ message: "Category not found" });
       }
     }
-    console.log(brands);
     res.json(brands);
   } catch (error) {
     res.status(400).json({ message: "Server error"});

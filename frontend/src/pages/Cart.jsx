@@ -1,7 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { FaTrash } from "react-icons/fa";
-
 import {
   useAddAndUpdateProductToCartMutation,
   useGetUserCartQuery,
@@ -40,8 +38,6 @@ const Cart = () => {
   const [removeFromCart] = useRemoveProductFromCartMutation();
 
   const navigate = useNavigate();
-
-  console.log(cartItems);
 
   useEffect(() => {
     refetch();

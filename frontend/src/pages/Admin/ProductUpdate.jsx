@@ -13,10 +13,6 @@ const AdminProductUpdate = () => {
 
   const { data: productData, refetch } = useGetProductByIdQuery(params._id);
 
-  console.log("Product Data", productData);
-
-  console.log(productData);
-
   const [image, setImage] = useState(productData?.image || "");
   const [name, setName] = useState(productData?.name || "");
   const [description, setDescription] = useState(
@@ -27,8 +23,6 @@ const AdminProductUpdate = () => {
   const [quantity, setQuantity] = useState(productData?.quantity || "");
   const [brand, setBrand] = useState(productData?.brand || "");
   const [stock, setStock] = useState(productData?.countInStock || "");
-  console.log("Product Data", productData);
-  console.log("Categoryjyfgyuf", category);
   // hook
   const navigate = useNavigate();
 
@@ -77,7 +71,6 @@ const AdminProductUpdate = () => {
         navigate("/admin/allproductslist");
       }
     } catch (err) {
-      console.log(err);
       toast.error("Product update failed. Try again.");
     }
   };
@@ -90,13 +83,11 @@ const AdminProductUpdate = () => {
       if (!answer) return;
 
       const { data } = await deleteProduct(params._id);
-      console.log("Delete: ", data);
       toast.success(`"${data?.name}" is deleted`);
 
       navigate("/admin/allproductslist");
       refetch();
     } catch (err) {
-      console.log(err);
       toast.error("Delete failed. Try again.");
     }
   };
@@ -104,8 +95,8 @@ const AdminProductUpdate = () => {
   const openCloudinaryWidget = () => {
     window.cloudinary.openUploadWidget(
       {
-        cloudName: "dh8gfmbp2",
-        uploadPreset: "embmj1ia",
+        cloudName: "dmchjg2yt",
+        uploadPreset: "ecommerce",
         sources: ["local", "url", "camera"],
         cropping: true,
         multiple: false,
@@ -114,8 +105,6 @@ const AdminProductUpdate = () => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Upload Success:", result.info);
-
           setImage(result.info.secure_url);
           toast.success("Image uploaded successfully");
         } else if (error) {
@@ -138,10 +127,8 @@ const AdminProductUpdate = () => {
     <>
       <div className="container  xl:mx-[9rem] sm:mx-[0]">
         <div className="flex flex-col md:flex-row">
-          {/* <AdminMenu /> */}
           <div className="md:w-3/4 p-3">
             <div className="h-12">Update / Delete Product</div>
-
             {image && (
               <div className="text-center">
                 <img

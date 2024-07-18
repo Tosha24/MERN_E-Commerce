@@ -10,9 +10,6 @@ const UpdateCategoryModal = ({
   updatingCategoryName,
   updatingCategoryImage,
 }) => {
-  console.log("updatingCategoryId", updatingCategoryId);
-  console.log("updatingCategoryName", updatingCategoryName);
-  console.log("updatingCategoryImage", updatingCategoryImage);
   const [image, setImage] = useState("");
   const [categoryName, setCategoryName] = useState("");
 
@@ -53,8 +50,8 @@ const UpdateCategoryModal = ({
   const openCloudinaryWidget = () => {
     window.cloudinary.openUploadWidget(
       {
-        cloudName: "dh8gfmbp2",
-        uploadPreset: "embmj1ia",
+        cloudName: "dmchjg2yt",
+        uploadPreset: "ecommerce",
         sources: ["local", "url", "camera"],
         cropping: true,
         multiple: false,
@@ -63,8 +60,6 @@ const UpdateCategoryModal = ({
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Upload Success:", result.info);
-
           setImage(result.info.secure_url);
           toast.success("Image uploaded successfully");
         } else if (error) {
@@ -84,7 +79,6 @@ const UpdateCategoryModal = ({
   }, []);
 
   const handleInputClick = (e) => {
-    // Prevent the click event from propagating to the modal background
     e.stopPropagation();
   };
 

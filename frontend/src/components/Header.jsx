@@ -1,4 +1,3 @@
-
 import ProductCarousel from "../pages/Products/ProductCarsousel";
 import { useGetTopProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "./Loader";

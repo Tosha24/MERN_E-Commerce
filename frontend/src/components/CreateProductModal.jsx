@@ -26,7 +26,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
   }, [ productId]);
 
   const { data: productData } = useGetProductByIdQuery(productId);
-  console.log(productData);
 
   const [createProduct] = useCreateProductMutation();
   const [updateProduct] = useUpdateProductMutation();
@@ -59,7 +58,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
         onClose();
       }
     } catch (error) {
-      console.error(error);
       toast.error("Product create failed. Try Again.");
     }
   };
@@ -76,7 +74,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
       formData.append("quantity", quantity);
       formData.append("brand", brand);
       formData.append("countInStock", Number(stock));
-      console.log("Category", category);
 
       const { data } = await updateProduct({ productId: productId, formData });
 
@@ -87,7 +84,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
         onClose();
       }
     } catch (err) {
-      console.log(err);
       toast.error("Product update failed. Try again.");
     }
   };
@@ -95,8 +91,8 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
   const openCloudinaryWidget = () => {
     window.cloudinary.openUploadWidget(
       {
-        cloudName: "dh8gfmbp2",
-        uploadPreset: "embmj1ia",
+        cloudName: "dmchjg2yt",
+        uploadPreset: "ecommerce",
         sources: ["local", "url", "camera"],
         cropping: true,
         multiple: false,
@@ -105,8 +101,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Upload Success:", result.info);
-
           setImage(result.info.secure_url);
           setImageUrl(result.info.secure_url);
           toast.success("Image uploaded successfully");
@@ -159,7 +153,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
         <h1 className="text-2xl font-bold text-black mb-4 w-full">
           {isUpdate ? "Update/Delete Product" : "Add New Product"}
         </h1>
-       {/* cross button */}
         <div className="flex justify-end w-full">
           <button
             className="bg-red-500 text-white p-2 h-8 w-8 rounded-md flex justify-center items-center"
@@ -171,7 +164,6 @@ const CreateProductModal = ({ onClose, isOpen, productId }) => {
         </div>
 
         <div className="flex flex-col justify-center items-center mb-4 w-full">
-          {/* create product  */}
           <div className="flex flex-col justify-center items-center mb-4 gap-3 w-full">
             <div className="flex flex-col md:flex-row w-full gap-3 items-start md:items-center justify-between font-semibold">
             <div className="flex flex-col w-full">

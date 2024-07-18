@@ -5,8 +5,6 @@ import {
   useGetTotalSalesQuery,
 } from "../../redux/api/orderApiSlice.js";
 import { useState, useEffect } from "react";
-import AdminMenu from "./AdminMenu";
-import OrderList from "./OrderList";
 import Loader from "../../components/Loader";
 import Chart from "react-apexcharts";
 

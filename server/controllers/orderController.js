@@ -3,8 +3,6 @@ import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 
 function calcPrices(orderItems) {
-
-  console.log("orderItems", orderItems);
   const itemsPrice = orderItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -25,19 +23,13 @@ function calcPrices(orderItems) {
 const createOrder = asyncHandler(async (req, res) => {
   const { orderItems, shippingAddress, paymentMethod } = req.body;
 
-  console.log("orderItems", orderItems);
-
   if (!orderItems || orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
   }
 
-  // Optimize by querying for all products in a single database query
-  console.log("orderItems", orderItems);
   const productIds = orderItems.map((item) => item?.product?._id);
-  console.log("productIds", productIds);
   const products = await Product.find({ _id: { $in: productIds } });
-  console.log("products", products);
 
   if (products.length !== orderItems.length) {
     res.status(400);
@@ -47,7 +39,6 @@ const createOrder = asyncHandler(async (req, res) => {
   const updatedOrderItems = orderItems.map((item) => {
     const product = products.find((p) => p._id.toString() === item.product?._id.toString());
 
-    console.log("product", product);
     if (!product) {
       throw new Error(`Product not found: ${item.product?._id}`);
     }
@@ -62,8 +53,6 @@ const createOrder = asyncHandler(async (req, res) => {
 
     };
   });
-
-  console.log("updatedOrderItems", updatedOrderItems);
 
   const { itemsPrice, taxPrice, shippingPrice, totalPrice } =
     calcPrices(updatedOrderItems);

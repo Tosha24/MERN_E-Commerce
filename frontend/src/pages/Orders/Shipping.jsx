@@ -9,7 +9,6 @@ import ProgressSteps from "../../components/ProgressSteps";
 
 const Shipping = () => {
   const shippingAddress = useSelector((state) => state.shippingAddress);
-  console.log(shippingAddress);
 
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const [address, setAddress] = useState(shippingAddress?.address || "");
@@ -30,7 +29,6 @@ const Shipping = () => {
     navigate("/placeorder");
   };
 
-  // Payment
   useEffect(() => {
     if (!shippingAddress?.address) {
       navigate("/shipping");

@@ -39,10 +39,7 @@ const ProductList = () => {
       productData.append("brand", brand);
       productData.append("countInStock", stock);
 
-      console.log("Product Data", productData);
-      console.log("name", name);
       const data = await createProduct(productData).unwrap();
-      console.log("Data", data);
 
       if (data.error) {
         toast.error("Product create failed. Try Again.");
@@ -51,7 +48,6 @@ const ProductList = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
       toast.error("Product create failed. Try Again.");
     }
   };
@@ -61,8 +57,8 @@ const ProductList = () => {
   const openCloudinaryWidget = () => {
     window.cloudinary.openUploadWidget(
       {
-        cloudName:"dh8gfmbp2",
-        uploadPreset: "embmj1ia",
+        cloudName: "dmchjg2yt",
+        uploadPreset: "ecommerce",
         sources: ["local", "url", "camera"],
         cropping: true,
         multiple: false,
@@ -71,15 +67,12 @@ const ProductList = () => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Upload Success:", result.info);
           setImageUrl(result.info.secure_url);
           setImage(result.info.secure_url);
           toast.success("Image uploaded successfully");
-        }
-        else if(error){
+        } else if (error) {
           toast.error(error?.data?.message || error.error);
         }
-
       }
     );
   };
@@ -97,7 +90,6 @@ const ProductList = () => {
   
   return (
     <div className="container mx-auto p-4">
-
       <button
         className="border text-white bg-blue-500 hover:bg-blue-700 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-2"
         onClick={() => setShowCreateProductModal(true)}
@@ -109,7 +101,6 @@ const ProductList = () => {
         </div>
         <div className="w-full md:w-3/4 px-4">
           <h2 className="text-xl font-bold mb-4">Create Product</h2>
-          
           {imageUrl && (
             <div className="text-center mb-6">
               <img
@@ -119,7 +110,6 @@ const ProductList = () => {
               />
             </div>
           )}
-
           <div className="mb-6">
             <button
               className="border text-white bg-blue-500 hover:bg-blue-700 px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-2"

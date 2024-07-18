@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Counter to keep track of the current color index
-
 const backgroundColors = [
   "bg-red-400",
   "bg-blue-400",
@@ -19,10 +17,7 @@ const backgroundColors = [
 let globalColorIndex = 0;
 
 const ProductHeaderCard = ({ image, name, price, id }) => {
-  // Get the current background color using the globalColorIndex
   const currentBackgroundColor = backgroundColors[globalColorIndex];
-
-  // Increment the globalColorIndex for the next card
   globalColorIndex = (globalColorIndex + 1) % backgroundColors.length;
 
   return (

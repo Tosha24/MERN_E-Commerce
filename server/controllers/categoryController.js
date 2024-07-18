@@ -78,8 +78,6 @@ const getTotalProductByCategory = asyncHandler(async (req, res) => {
   try {
     const products = await Product.find({});
     const categories = await Category.find({});
-    console.log("products", products);
-    console.log("categories", categories);
     const totalProductsByCategory = categories.map((category) => {
       return {
         _id: category._id,

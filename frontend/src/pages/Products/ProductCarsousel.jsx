@@ -66,7 +66,6 @@ const ProductCarousel = () => {
   return (
     <div className="rounded-lg relative pr-4 pl-4 mt-6">
       {isLoading ? (
-        // Loading state
         <div className="flex flex-row justify-center items-center overflow-hidden transition-transform duration-500 gap-[20px]">
         {Array.from({ length: getItemsPerPage() }).map((_, index) => (
           <ProductHeaderCardSkeleton key={index} />

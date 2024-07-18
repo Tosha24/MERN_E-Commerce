@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Ratings from "./Ratings";
-import { useAllProductsQuery, useGetProductsQuery } from "../../redux/api/productApiSlice.js";
+import { useGetProductsQuery } from "../../redux/api/productApiSlice.js";
 import Loader from "../../components/Loader";
 import ProductCard from "./ProductCard";
 
@@ -49,7 +48,6 @@ const ProductTabs = ({
         </button>
       </section>
 
-      {/* Second Part */}
       <section className="w-full">
         {activeTab === 1 && (
           <>

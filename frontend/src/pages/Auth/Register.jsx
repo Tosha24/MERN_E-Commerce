@@ -37,21 +37,19 @@ const Register = () => {
     }
   };
 
-  console.log("isRegistered", isRegistered);
-
   return (
     <div className="flex justify-center items-center min-h-screen -mt-9 bg-rose-100">
       <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
         <h1 className="text-3xl font-semibold mb-6 text-center text-pink-500">
           Register to E-KART
         </h1>
-
+{/* 
         {isRegistered && (
           <div className="mb-4 text-green-600 bg-rose-200/50 rounded-xl p-2">
             A verification email has been sent to your email address. Please
             check your inbox and follow the instructions to verify your email.
           </div>
-        )}
+        )} */}
 
         <form onSubmit={submitHandler} className="space-y-4">
           <div>

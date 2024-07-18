@@ -5,7 +5,7 @@ import generateToken from "../utils/createToken.js";
 import Product from "../models/productModel.js";
 import mongoose from "mongoose";
 import crypto from "crypto";
-import sendVerificationEmail from "../utils/sendVerificationEmail.js";
+
 
 const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
@@ -21,9 +21,6 @@ const createUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-
-  console.log("Creating user")
-
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -33,14 +30,9 @@ const createUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   });
 
-
-  console.log("newUser", newUser);
-
   try {
     const user = await newUser.save();
-    // Send verification email
     const verificationToken = generateVerificationToken(); // Generate a verification token
-    console.log("verificationToken", verificationToken);
     user.verificationToken = verificationToken;
     await user.save();
     // await sendVerificationEmail(user.email, verificationToken); // Send the verification email
@@ -53,21 +45,13 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Add this function to generate a verification token
 function generateVerificationToken() {
-  // Generate a random token using crypto
   const token = crypto.randomBytes(20).toString('hex');
   return token;
 }
 
-// const dummy=  asyncHandler(async(req,res)=>{
-//   console.log(req.body)
-//   res.send("dummy route")
-// })
-
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log("req body: ", req.body);
   const existingUser = await User.findOne({ email });
   if (!existingUser) {
     res.status(400);
@@ -206,10 +190,8 @@ const addProductToFavorites = asyncHandler(async (req, res) => {
 const verifyEmail = asyncHandler(async (req, res) => {
   const { token } = req.params;
 
-  console.log("token", token);
   // Find user by verification token
   const user = await User.findOne({ verificationToken: token });
-  console.log("user", user);
 
   if (!user) {
     res.status(400);

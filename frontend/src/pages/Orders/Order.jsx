@@ -52,7 +52,6 @@ const Order = () => {
         refetch();
         toast.success("Order is paid");
         await clearCart(userInfo._id);
-      // reload
         window.location.reload();
         dispatch(clearCheckoutInfo());
       } catch (error) {

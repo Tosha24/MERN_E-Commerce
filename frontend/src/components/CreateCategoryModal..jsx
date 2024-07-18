@@ -38,8 +38,8 @@ const CreateCategoryModal = ({ isOpen, onClose, refetch }) => {
   const openCloudinaryWidget = () => {
     window.cloudinary.openUploadWidget(
       {
-        cloudName: "dh8gfmbp2",
-        uploadPreset: "embmj1ia",
+        cloudName: "dmchjg2yt",
+        uploadPreset: "ecommerce",
         sources: ["local", "url", "camera"],
         cropping: true,
         multiple: false,
@@ -48,8 +48,6 @@ const CreateCategoryModal = ({ isOpen, onClose, refetch }) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Upload Success:", result.info);
-
           setImage(result.info.secure_url);
           toast.success("Image uploaded successfully");
         } else if (error) {

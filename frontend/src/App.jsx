@@ -6,7 +6,6 @@ import Navigation from './pages/Auth/Navigation'
 const App = () => {
   return (
     <>
-   
     <Toaster />
     <div>
       <Navigation />

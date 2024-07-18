@@ -14,8 +14,6 @@ const PlaceOrder = () => {
   const checkoutInfo = useSelector((state) => state.shippingAddress);
   const { data: cartItems } = useGetUserCartQuery();
 
-  console.log(cartItems);
-
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {

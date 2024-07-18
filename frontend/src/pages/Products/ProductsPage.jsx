@@ -22,8 +22,6 @@ const ProductsPage = () => {
     }
   }, [Products]);
 
-  console.log(showProduct);
-
   const displayProducts = products.length > 0 ? products : Products;
 
   return (

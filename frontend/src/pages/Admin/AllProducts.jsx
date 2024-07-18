@@ -39,7 +39,6 @@ const AllProducts = () => {
       toast.success(`Product is deleted`);
       refetch();
     } catch (err) {
-      console.log(err);
       toast.error("Delete failed. Try again.");
     }
   };
@@ -89,32 +88,27 @@ const AllProducts = () => {
             {value.length > 20 ? value.substring(0, 35) + "..." : value}
           </span>
         ),
-        // Adding sorting functionality for the 'Name' column
         sortType: "alphanumeric",
       },
       {
         Header: "Brand",
         accessor: "brand",
-        // Adding sorting functionality for the 'Brand' column
         sortType: "alphanumeric",
       },
       {
         Header: "In Stock",
         accessor: "countInStock",
-        // Adding sorting functionality for the 'In Stock' column
         sortType: "basic",
       },
       {
         Header: "Created At",
         accessor: "createdAt",
-        // Adding sorting functionality for the 'Created At' column
         sortType: "basic",
         Cell: ({ value }) => moment(value).format("MMMM Do YYYY"),
       },
       {
         Header: "Price",
         accessor: "price",
-        // Adding sorting functionality for the 'Price' column
         sortType: "basic",
         Cell: ({ value }) => `₹ ${value}`,
       },

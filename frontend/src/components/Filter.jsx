@@ -18,8 +18,6 @@ const Filter = ({ category, setProducts, setshowProduct }) => {
     maxPrice,
   });
 
-  console.log(filteredProducts);
-
   const handleCheck = (value) => {
     if (checkedBrands.includes(value)) {
       setCheckedBrands(checkedBrands.filter((item) => item !== value));

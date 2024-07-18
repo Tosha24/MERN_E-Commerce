@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import dotnev from "dotenv";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
@@ -13,15 +12,12 @@ import cors from "cors";
 const app = express();
 
 
-
 app.use(cors({ origin: true, credentials: true }));
 
 dotnev.config();
 
 const port = process.env.PORT || 5000;
 connectDB();
-
-console.log("MongoURI: ", process.env.MONGO_URI)
 
 app.use(express.json());
 app.use(cookieParser());

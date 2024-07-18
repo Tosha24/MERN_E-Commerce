@@ -33,7 +33,6 @@ const ProductCard = ({ product }) => {
   const { data: cartItems, refetch } = useGetUserCartQuery();
 
   
-
   const handleAddToCart = async () => {
     if (!userInfo) {
       toast.error("Please login to add product to cart");
