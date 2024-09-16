@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/api/usersApiSlice";
 import { toast } from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -27,13 +28,27 @@ const Register = () => {
 
     try {
       setIsRegistered(true);
-      await register({
+      const response = await register({
         username: userName,
         email,
         password,
       }).unwrap();
+
+      emailjs.send(
+        process.env.SERVICE_ID,
+        process.env.TEMPLATE_ID,
+        {
+          from_name: process.env.FROM_NAME,
+          to_name: response.username,
+          from_email: process.env.FROM_EMAIL,
+          to_email: response.email,
+          message: `Click on the following link to verify your email: ${process.env.FRONTEND_URL}/verify-email/${response.verificationToken}`,
+        },
+        process.env.EMAILJS_PUBLIC_KEY,
+      );
+      toast.success("Verification Email Sent Successfully");
     } catch (error) {
-      toast.error(error.data.message);
+      toast.error("Could not register. Please try again later.");
     }
   };
 
@@ -43,13 +58,13 @@ const Register = () => {
         <h1 className="text-3xl font-semibold mb-6 text-center text-pink-500">
           Register to E-KART
         </h1>
-{/* 
+
         {isRegistered && (
           <div className="mb-4 text-green-600 bg-rose-200/50 rounded-xl p-2">
             A verification email has been sent to your email address. Please
             check your inbox and follow the instructions to verify your email.
           </div>
-        )} */}
+        )}
 
         <form onSubmit={submitHandler} className="space-y-4">
           <div>

@@ -12,11 +12,13 @@ const VerifyEmailPage = () => {
 
   useEffect(() => {
     if (data) {
+      console.log("Data: ", data);
       toast.success(data.message);
       navigate("/login");
     }
     if (error) {
       console.log("error", error);
+      toast.error("Could not verify email. Please try again later.");
     }
   }, [data, error, navigate]);
 

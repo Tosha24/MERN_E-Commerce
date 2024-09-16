@@ -35,7 +35,6 @@ const createUser = asyncHandler(async (req, res) => {
     const verificationToken = generateVerificationToken(); // Generate a verification token
     user.verificationToken = verificationToken;
     await user.save();
-    // await sendVerificationEmail(user.email, verificationToken); // Send the verification email
     generateToken(res, user._id);
     res.status(201).json(user);
   } catch (error) {
@@ -203,7 +202,6 @@ const verifyEmail = asyncHandler(async (req, res) => {
   user.verificationToken = undefined; // Remove verification token
   await user.save();
 
-  // Redirect user to login page
   res.status(200).json({ message: "Email verified successfully" });
 });
 
