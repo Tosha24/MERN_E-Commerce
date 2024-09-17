@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/": "http://localhost:5000",
+      "/api/": "https://mern-e-commerce-v2s2.onrender.com",
     },
   },
 });

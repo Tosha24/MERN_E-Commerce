@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://mern-e-commerce-v2s2.onrender.com";
 export const USERS_URL = "/api/users"
 export const CATEGORY_URL = "/api/category"
 export const PRODUCT_URL = "/api/products"
