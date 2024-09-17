@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/": "https://mern-e-commerce-v2s2.onrender.com",
+      // "/api/": "http://localhost:5000",
     },
   },
 });

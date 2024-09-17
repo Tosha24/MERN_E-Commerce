@@ -35,20 +35,23 @@ const Register = () => {
       }).unwrap();
 
       emailjs.send(
-        process.env.SERVICE_ID,
-        process.env.TEMPLATE_ID,
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
         {
-          from_name: process.env.FROM_NAME,
+          from_name: import.meta.env.VITE_FROM_NAME,
           to_name: response.username,
-          from_email: process.env.FROM_EMAIL,
+          from_email: import.meta.env.VITE_FROM_EMAIL,
           to_email: response.email,
-          message: `Click on the following link to verify your email: ${process.env.FRONTEND_URL}/verify-email/${response.verificationToken}`,
+          message: `Click on the following link to verify your email: ${import.meta.env.VITE_FRONTEND_URL}/verify-email/${response.verificationToken}`,
         },
-        process.env.EMAILJS_PUBLIC_KEY,
-      );
-      toast.success("Verification Email Sent Successfully");
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      ).then(() => {
+        toast.success("Verification Email Sent Successfully");
+      }).catch(() => {
+        toast.error("Could not send verification email. Please try again later.");
+      })
     } catch (error) {
-      toast.error("Could not register. Please try again later.");
+      toast.error(error.data.message);
     }
   };
 
